@@ -1,0 +1,28 @@
+Need to:
+import pyaedt.hfss as H
+import map and IRS design
+    hfss = H.Hfss(project = projectname, design = designName, solution_type = ?, etc)
+
+set IRS to correct x and Y
+    Maybe add_3d_component_array_from_json()??
+    change_design_settings(dictionary of settings)
+    change_property()?
+
+    hfss.modeler["modelName"].history().props["XSize"] = "5mm"
+    hfss.modeler["modelName"].move([x, y, z])
+
+    edit original move command to continue moving object
+    took picture of screen
+
+
+run simulation 
+    hfss.analyze()
+export results
+    export_results(export_folder="?")
+
+while ():
+    move IRS
+    repeat simulation
+
+
+hfss.close_desktop()

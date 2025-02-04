@@ -1,0 +1,37 @@
+Classes needed:
+
+CSV file reader/scorer
+    results to score:
+        avg Near Poynting
+        //capacity within x/y (higher better)
+        //cumulative probability per channel capacity in mbps (want less probability of lower capacity)
+        //Signal to Noise ratio vs channel capacity (want better SNR)
+        include parameters given to get results!!
+
+Score recorder/holder/sorter (linked list?)
+        test class
+    sort by different scores
+    sort by all scores together
+    hold instances of testResult objects
+
+
+
+HFSS API interfacing program
+
+GUI for score holder?
+    options to change sorting
+    view results
+    open files associated with results
+    start testing
+
+
+
+
+testing driver
+
+
+HFSS API program runs a test and generates a csv file
+score csv file (take csv file address as parameter, return score)
+make test result object w/ score, file address, and hfss parameters
+add it to the linked list
+create some file to record linked list

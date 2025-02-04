@@ -1,0 +1,82 @@
+Planning:
+
+HFSSTESTING
+
+Main method/API interacting class
+	open input file, read testing parameters (x and y coordinates)
+	while (coordinates left on input file)
+	call runSimulation()
+	call findAvgVal()
+	place score, simulation parameters, and CSV file location into dictionary
+	place dictionary in list of all results
+	call resultsToFile()
+
+runSimulation(): TODO
+	takes x and y coordinates, possibly from optimization software
+	runs test in HFSS through API
+	exports CSV file
+
+findAvgVal: done
+	scores test with static method
+
+evaluateWorkArea: TODO
+	split work area into 3x3 grid
+	evaluate avg value of each grid
+	save each value seperately
+
+resultsToPickle: done
+	store list of dictionaries with pickle
+
+resultsToCSV: done
+	store list of dictionaries to CSV with one line per dictionary
+
+getParams(): done
+	gets x and y coordinates from csv file, adds them to list
+
+userInterface(): TODO
+	gets desired X and Y range to check signal strength within
+	asks for name of parameters list CSV file
+	asks for desired output file name
+
+Something to view test output?
+
+Future: TODO
+	
+
+_________________________________________________________________
+HFSSTestingViewer (decided not to do this)
+Do I want to write a text file or have a program that does all this?
+
+displayResults()
+	simply print contents of list as they currently are
+
+sortByAvg()
+	sort list by value of AVG
+
+sortByFileName()
+	sort list by file name
+
+searchForFileName()
+	show results containing a specific file name
+
+searchByX()
+	show results containing X parameter
+
+searchByY()
+	show results containing Y parameter
+
+searchByXY()
+	show results containing both X and Y parameter
+
+userInterface()
+	loops, allowing the user to choose from above options
+
+_____________________________________________________________________
+
+GUI:
+must produce minX, maxX, minY, maxY, input file name, desired output file name
+
+TODO:
+Finish making the HFSS API function
+
+Include update information showing that program is running

@@ -1,0 +1,27 @@
+Bayesian optimization planning:
+
+black box function must contain runSimulation(x, y) and findAvgVal(file location)
+
+black_box(x, y):
+	fileLocation = runSimulation(x, y)
+	return findAvgVal(fileLocation)
+
+optimizer = BayesianOptimization(
+	f=black_box,
+	pbounds = user's set bounds,
+	verbose = 0,
+	random_state = 1)
+
+optimizer.maximize(
+	init_points = 2,
+	n_iter = user's set number)
+
+print(optimizer.max)
+
+holder class:
+	has:
+	x and Y range variables
+	runSimulation function
+	findAvgVal function
+	blackBox function
+

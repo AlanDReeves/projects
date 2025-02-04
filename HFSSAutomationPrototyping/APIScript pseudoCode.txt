@@ -1,0 +1,29 @@
+from ansys.aedt.core import launch_desktop, HFSS
+
+numTests = number of rows of x,y cooridnates
+numCompleted = 0
+
+d = launch_desktop(specified_version="XXXX",
+    non-graphical=False,
+    new_desktop_session=False,
+    close_on_exit=False,
+    student_version="???"
+
+hfss = HFSS(project = "asdf", design = "asdf",
+solution_type="asdf")
+
+
+while(numCompleted < numTests):
+pick x, y location off list
+
+set x, y location for metasurface
+    Hfss.change_property()???
+
+
+Hfss.analyze()
+
+export_results(analyze="false", export_folder = "asdf", length="asf")
+
+numCompleted += 1
+end while
+

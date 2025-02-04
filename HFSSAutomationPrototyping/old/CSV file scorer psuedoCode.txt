@@ -1,0 +1,33 @@
+open text file in read mode
+
+score x,y,capacity
+while not EOF
+    if num1 < x < num2 && num3 < y < num4:
+        totalCapacity += capacity
+        totalCount += 1
+averageCap = totalCapacity / totalCount
+
+score CumulativeProb vs ChannelCap
+want line further to the right, more probability of higher capacities
+    check y axis at several pre-determined points, record their place on x axis as the score. 
+    This way having the graph to the right will be better.
+
+    yAxis = 0.1
+    points = 0
+    while yAxis < 1.0 && not EOF
+        cycle through coordinates until yCoord ~ yAxis
+        points = xCoord
+        yAxis += 0.1
+
+    return points
+
+score signal to noise ratio vs relative prob
+want greater probability of higher SNR
+    yAxis = 0.1
+    points = 0
+    while yAxis < 1.0 && not EOF
+        cycle through coordinates until yCoord ~ yAxis
+        points = xCoord
+        yAxis += 0.1
+
+package scores and file address into test class object, return that
