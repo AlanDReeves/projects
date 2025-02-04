@@ -4,7 +4,7 @@ import statistics
 coordsList = []
 
 #rip data from txt file
-with open('EA Reactive GNP_rawdata_textfile.txt', "r") as file :
+with open('ramanDataProcessing\EA Reactive GNP_rawdata_textfile.txt', "r") as file :
     coordsList = file.readlines()
     file.close()
 
@@ -27,7 +27,7 @@ plt.xlabel("cm^-1")
 plt.ylabel("intensity")
 plt.title("Raman Data")
 
-#plt.show()
+plt.show()
 
 #identify peaks
 def findPeak(x_vals: list, y_vals: list):
@@ -52,6 +52,7 @@ def findPeak(x_vals: list, y_vals: list):
 #figure out how to identify baseline
 #look into FFT - fast fourier transfer (for baseline)
 #look into detrend function in SciPy package
+
 def comparePeaks(baseLine, peak1Top, peak2Top):
     peak1Height = peak1Top - baseLine
     peak2Height = peak2Top - baseLine
