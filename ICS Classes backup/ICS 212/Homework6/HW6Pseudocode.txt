@@ -1,0 +1,48 @@
+Delete record plan:
+Possible cases: empty list, only 1 record in list, record to delete is first in list, record to delete is last in list, record to delete is last in list
+
+Check if start is null
+if start is null return -1
+follower = null
+cursor = start
+
+else (not null)
+while cursor.acct num != acctNum && cursor.next != null)
+	follower = cursor
+	cursor = cursor.next
+	(when this completes, will have matching acct num in cursor and previous in follower OR at end of list)
+if cursor.acctnum != acctNum return -1 (no record exists)
+else
+if follower is null:
+	if cursor.next is null:
+		start = null
+		deallocate cursor
+		return 1
+	else if cursor.next != null:
+		start = cursor.next
+		deallocate cursor
+		return 1
+if follower != null:
+
+	if cursor.next is null:
+		follower.next = null
+		deallocate cursor
+		return 1
+	if cursor.next != null:
+		follower.next = cursor.next
+		deallocate cursor
+		return 1
+
+
+
+Add record plan: DON'T HAVE TO FINISH THIS NOW
+Possible cases: empty list, only 1 record in list, record to add is first in list, record to add is last in list, record to add is in middle, duplicate record
+
+if start = null:
+	start = new record
+else if start != null:
+while cursor.acctnum < acctNum && cursor.next != null)
+	follower = cursor
+	cursor = cursor.next
+if cursor.acctnum == acctNum return -1 (duplicate)
+else

@@ -1,0 +1,27 @@
+Script started on Tue 03 Sep 2024 11:09:37 AM HST
+]0;alandr@uhx02:~/homework1[?1034huhx02:/home/a/alandr/homework1% ./homework1
+Hello
+World
+!!!
+While loop!
+While loop!
+While loop!
+While loop!
+Do-while loop!
+Do-while loop!
+Do-while loop!
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% java helloworld
+Hello
+World
+!!!
+While loop!
+While loop!
+While loop!
+While loop!
+Do-while loop!
+Do-while loop!
+Do-while loop!
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% exit
+exit
+
+Script done on Tue 03 Sep 2024 11:10:04 AM HST

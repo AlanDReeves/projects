@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+*** Assume the following variables are already defined. ***
+
+- numbers: array of int
+- n: the size of the integer array (numbers)
+- m: the number of first slots which already have values (m < n)
+- num: the number to insert to the array
+--------------------------------------------------------------------------------
+
+if (m == 0)
+    copy from num to numbers[0]
+
+else
+
+    define an int called i
+    copy from 0 to i
+
+    while (num > numbers[i] && i < m)
+        copy from i + 1 to i
+
+    if (i == m)
+        copy from num to numbers[i]
+    else
+        define an int called temp
+        copy from numbers[i] to temp
+        copy from num to numbers[i]
+        copy from i + 1 to i
+
+        define an int called tempGreater
+        while (i <= m - 1)
+            copy from numbers[i] to tempGreater
+            copy from temp to numbers[i]
+            copy from tempGreater to temp
+            copy from i + 1 to i
+        copy from temp to numbers[m]
+
+copy from m + 1 to m

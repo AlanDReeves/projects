@@ -1,0 +1,11 @@
+Requirements:
+To the best of my knowledge, and after extensive testing, I believe all requirements were met and are functional. I used my original test plan, and also wrote a few driver iterations to ensure llist methods which went unused in the final product also worked, including the overloaded assignment operator, char[] constructor, and copy constructor. I had to add these additional constructors to the llist class declaration, which technically changes it from the original requirement. 
+
+Additional features/extra credit:
+A copy constructor and overloaded assignment operator were made and tested for llist, but were not used within the main method of user_interface.cpp. 
+The overloaded << operator was testing and is used within the main method. It is declared in llist.h and defined in user_interface.cpp. 
+
+Future enhancements and/or general comments:
+I would really have liked to add a getter and setter for the filename in llist. I found while making drivers for testing that it was very inconvenient to change the file name as things are now.
+I would also like to rewrite the llist methods so that they do not print anything directly and only return references to relevant record, for example, in the findRecord function.
+While I had to completely rewrite several functions due to differences between C and C++, I found that the new C++ methods were much easier to write due to all the extra help that C++ gives. 

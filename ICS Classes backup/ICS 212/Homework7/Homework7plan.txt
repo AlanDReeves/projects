@@ -1,0 +1,101 @@
+Readfile(const char[] constarr, unsigned char[] unsignedarr):
+
+in main, create a file pointer "pointer"
+fopen (filename, "rb");
+
+if pointer is null:
+	print error message, exit
+else:
+	fread(unsignedarr, sizeof(unsigned char), 20, pointer)
+
+
+
+print header:
+
+int sourcePort, destinationPort;
+unsigned int sequenceNum, ackNum;
+
+
+sourcePort = unsignedarr[1] << 8
+sourcePort += unsignedarr[0]
+(this works, from testing)
+
+destinationPort = unsignedarr[3] << 8
+destinationPort += unsignedarr[2]
+
+sequenceNum = unsignedarr[7] << 24
+sequenceNum += unsignedarr[6] << 16
+sequenceNum += unsignedarr[5] << 8
+sequenceNum += unsignedarr[4] 
+
+ackNum = unsignedarr[11] << 24
+ackNum += unsignedarr[10] << 16
+ackNum += unsignedarr[9] << 8
+ackNum += unsignedarr[8] 
+
+print sourcePort, destinationPort, sequenceNum, ackNum
+
+if flags are 1, print corresponding flag
+
+
+Response header:
+
+source port is unflipped in array:
+check if first byte & 1 = 1
+if yes, greater
+
+if flipped:
+sourcePort >> 15
+check if remaining digit == 1
+if yes, sourcePort > 0x7FFF
+else, less.
+
+if greater:
+swap 4th and 11th bits
+
+extract sourceport as above
+mask = (1 << 4) | (1 << 10)
+sourceport = sourceport ^ mask
+
+//ACTUAL CODE STARTS//
+int sourcePort, destinationPort, sourceGreater, mask, temp;
+unsigned int sequenceNum, ackNum;
+
+
+sourcePort = unsignedarr[1] << 8;
+sourcePort += unsignedarr[0];
+
+if ((sourcePort >> 15) & 1 == 1)
+{
+    sourceGreater = 1;
+}
+else
+{
+    sourceGreater = 0;
+}
+
+if (sourceGreater == 1)
+{
+    mask = (1 << 4) | (1 << 10)
+    sourcePort = sourcePort ^ mask
+}
+
+destinationPort = unsignedarr[3] << 8;
+destinationPort += unsignedarr[2];
+
+ackNum = unsignedarr[11] << 24;
+ackNum += unsignedarr[10] << 16;
+ackNum += unsignedarr[9] << 8;
+ackNum += unsignedarr[8]; 
+
+temp = sourcePort;
+sourcePort = destinationPort;
+destinationPort = temp;
+
+ackNum = sequenceNum;
+sequenceNum += 1;
+
+if ((unsignedarr[13] & (1 << 1)) == (1 << 1))
+{
+    unsignedarr[13] = unsignedarr[13] & (1 << 4)
+}

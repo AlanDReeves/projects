@@ -1,0 +1,15 @@
+Script started on Sat 12 Oct 2024 01:36:49 PM HST
+]0;alandr@uhx02:~/homework5[?1034huhx02:/home/a/alandr/homework5% touch *.c
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% make
+gcc -ansi -pedantic-errors -Wall -c iofunctions.c
+gcc -ansi -pedantic-errors -Wall -c driver.c
+gcc -o homework5 iofunctions.o driver.o
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% make
+make: `homework5' is up to date.
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% touch *.o
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% make
+gcc -o homework5 iofunctions.o driver.o
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% exit
+exit
+
+Script done on Sat 12 Oct 2024 01:37:32 PM HST

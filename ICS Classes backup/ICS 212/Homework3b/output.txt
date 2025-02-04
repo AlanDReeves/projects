@@ -1,0 +1,159 @@
+Script started on Thu 26 Sep 2024 02:57:35 PM HST
+]0;alandr@uhx02:~/homework3b[?1034huhx02:/home/a/alandr/homework3b% ,[K./homework3 x
+Invalid arguments.
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% ./homework3 x[Kdebug x
+Invalid arguments.
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% ./homework3 debug x[Kdebug
+Invalid arguments.
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% ./homework3 debug debug[K[K[K[K[K[K
+Welcome to the database. This program stores and retrieves customer data.
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+add  One
+Invalid input.
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+add one
+Invalid input.
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+add
+Creating a new account record.
+called getValidAcctNum(char[] trashInput)
+trashInput is an uninitialized string
+Please enter an account number
+no
+The account number must be an integer greater than 0
+Please enter an account number.
+-99
+The account number must be an integer greater than 0
+Please enter an account number.
+1234
+Enter the account holder's name.
+Jack
+Enter the account holder's address.
+called getAddress(char address, int 80)
+address is an uninitialized string
+Type as many lines as you like, and input a percent symbol when done.
+line1
+line2
+line3
+sp  line4
+%
+called addRecord(int 1234, char[] Jack, char[] line1
+line2
+line3
+line4
+)
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+print 
+called printAllRecords()
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+fi
+called getValidAcctNum(char[] trashInput)
+trashInput is an uninitialized string
+Please enter an account number
+-9
+The account number must be an integer greater than 0
+Please enter an account number.
+asf
+The account number must be an integer greater than 0
+Please enter an account number.
+1234
+called findRecord(int 1234)
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+de
+called getValidAcctNum(char[] trashInput)
+trashInput is an uninitialized string
+Please enter an account number
+456
+called deleteRecord(int 456)
+called displayMenu()
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+q
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% ./homework3 
+Welcome to the database. This program stores and retrieves customer data.
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+a
+Creating a new account record.
+Please enter an account number
+1234
+Enter the account holder's name.
+Jack
+Enter the account holder's address.
+Type as many lines as you like, and input a percent symbol when done.
+one
+two
+%
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+q
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% exit
+exit
+
+Script done on Thu 26 Sep 2024 02:59:25 PM HST

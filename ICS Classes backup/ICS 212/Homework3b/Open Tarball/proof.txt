@@ -1,0 +1,28 @@
+Script started on Thu 26 Sep 2024 02:23:36 PM HST
+]0;alandr@uhx02:~/homework3b[?1034huhx02:/home/a/alandr/homework3b% touch *.c
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% make
+gcc -ansi -pedantic-errors -Wall -c user_interface.c
+gcc -ansi -pedantic-errors -Wall -c database.c
+gcc -o homework3 user_interface.o database.o
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% touch user_interface.c
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% make
+gcc -ansi -pedantic-errors -Wall -c user_interface.c
+gcc -o homework3 user_interface.o database.o
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% touch *.o
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% make
+gcc -o homework3 user_interface.o database.o
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% ./homework3 
+Welcome to the database. This program stores and retrieves customer data.
+Please select one of the following options or press enter to quit.
+
+add:      add a new account record
+printall: show all existing records
+find:     find an account by its account number
+delete:   delete an existing record by its account number
+quit:     exit this program
+
+quit
+]0;alandr@uhx02:~/homework3buhx02:/home/a/alandr/homework3b% exit
+exit
+
+Script done on Thu 26 Sep 2024 02:25:00 PM HST

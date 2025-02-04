@@ -1,0 +1,63 @@
+               LinkedList node swapping method (doesn't work) 
+                
+                
+                //DOES find currPosition node.
+                //DOES find nodeInFront and nodeInBack correctly
+                //switches nodes but puts moveNode one position too early
+
+                SongEntry originalHead = headNode;
+                int position = 1;
+
+                System.out.println("Enter song's current position:");
+                int currPosition = scan.nextInt();
+                System.out.println("Enter new position for song");
+                int newPosition = scan.nextInt();
+                if (newPosition < 1) {
+                    newPosition = 1;
+                }
+
+                //find currPosition node and node before
+                while (position < currPosition -1 && headNode.nextNode != null) {
+                    headNode = headNode.nextNode;
+                    position += 1;
+                }
+                SongEntry nodeBeforeMove = headNode.nextNode;
+                SongEntry moveNode = headNode.nextNode.nextNode;
+                headNode = originalHead;
+                position = 1;
+                
+                //find node at desired position
+                while (position < newPosition && headNode.nextNode != null) {
+                    headNode = headNode.nextNode;
+                    position += 1;
+                }
+                
+                if (position == newPosition) {
+                    SongEntry nodeInFront = headNode;
+                    SongEntry nodeInBack = headNode.nextNode;
+                    headNode = originalHead;
+
+                    //add desired node in front
+                    nodeBeforeMove.setNext(nodeInFront);
+                    nodeInFront.setNext(moveNode);
+                    moveNode.setNext(nodeInBack);
+                } else {
+                    //if end of list is reached before correct position, add to end
+                    System.out.println("end of list reached before position found");
+                    headNode.setNext(moveNode);
+                    moveNode.setNext(null);
+                    headNode = originalHead;
+                }
+
+                
+                //remove node from its original position
+                // while (position < currPosition && headNode.nextNode != null) {
+                //     headNode = headNode.nextNode;
+                //     position += 1;
+                // }
+                // if (headNode.getNext().getNext() != null) {
+                // headNode.setNext(headNode.getNext().getNext());
+                // }
+
+                scan.nextLine();
+                headNode = originalHead;

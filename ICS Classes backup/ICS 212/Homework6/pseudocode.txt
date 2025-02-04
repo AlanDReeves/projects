@@ -1,0 +1,58 @@
+-----------------------------------
+deleteRecord
+
+- start: The pointer to the first record of the list (or NULL)
+- uaccountno: The user's account number (integer)
+-----------------------------------
+
+define an int called returnVal
+define a pointer to record called cursor
+define a pointer to record called follower
+
+if (start is NULL)
+    copy from -1 to returnVal
+else
+*/start is not null/*
+
+    copy from start to cursor
+    copy from NULL to follower
+    
+    while(the accountno field in the record whose address is in cursor != uaccountno && the next field in the record whose address is in cursor is not NULL)
+        copy from cursor to follower
+        copy from the next field of the record whose address is in cursor to cursor
+       
+    */cursor is now either on the record whose accountno matches and/or it is at the end of the list./*
+    
+    if (the accountno field of the record whose address is in cursor != uaccountno)
+        copy from -1 to returnVal
+        */no such record exists/*
+
+    else
+        if (follower is NULL)
+            if (the next field of the record whose address is in cursor is NULL)
+                */There is only one record in the list/*
+                copy from NULL to start
+                release the space whose address is in cursor
+                copy from 0 to returnVal
+
+            else
+                */cursor is on the first record, and there is at least one more record after/*
+                copy from the next field of the record whose address is in cursor to start
+                release the space whose address is in cursor
+                copy from 0 to returnVal
+
+        else
+            */follow is not NULL, and the record to delete is not the first one in the list/*
+            if (the next field of the record whose address is in cursor is NULL)
+                */cursor is on the final record in the list/*
+                copy from NULL to the next field of the record whose address is in follower
+                release the space whose address is in cursor
+                copy from 0 to returnVal
+
+            else
+                */cursor is not on the final entry in the list/*
+                copy from the next field of the record whose address is in cursor to the next field of the record whose address is in follower
+                release the space whose address is in cursor
+                copy from 0 to returnVal
+
+return returnVal

@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+addRecord
+
+*** Assume the following variables are already defined. ***
+
+- start: The pointer to the first record of the list (or NULL)
+- uaccountno: The user's account number (integer)
+- uname: a character array containing the user's name
+- uaddress: a character array containing the user's address
+--------------------------------------------------------------------------------
+		
+pseudocode:
+
+define a pointer to record called newRecordP
+define a pointer to a record called cursor
+define a pointer to a record called priorNode
+allocate a heap space and store its address in newRecordP
+
+copy from uaccountno to accountno field in the record whose address is in newRecordP
+copy from uname to name field in the record whose address is in newRecordP
+copy from uaddress to the address field in the record whose address is in newRecordP
+
+if (start is equal to Null)
+	copy from newRecordP to start
+	copy from the Null to the next field of the record whose address is in start
+
+else
+	if (the accountno of the record whose address is in newRecordP is less than the accountno of the record whose address is in start)
+		copy from start to the next field in the record whose address is in newRecordP
+		copy from newRecordP to start
+
+	else
+		copy from start to cursor
+		while (the accountno field in the record whose address is in newRecordP is greater than the accountno field in the record whose address is in cursor AND the next field in the record whose address is in cursor is not equal to Null)
+			copy from cursor to priorNode
+			copy from the next field in the record whose address is in cursor to cursor
+
+		if (the accountno field in the record whose address is in cursor is equal to the accountno field in the record whose address is in newRecordP)
+			/*do nothing, duplicate*/
+
+		else if (the next field in the record whose address is in cursor is equal to Null && the accountno field of the record whose address is in newRecordP is greater than the accountno field of the record whose address is in cursor)
+			copy from newRecordP to the next field in the record whose address is in cursor.
+			copy from Null to the next field in the record whose address is in newRecordP
+		else 
+			copy from cursor to the next field of the record whose address is in newRecordP
+			copy from newRecordP to the next field of the record whose address is in priorNode
+
+			
+			

@@ -1,0 +1,68 @@
+cleanup:
+Given record** startP
+
+cursor = *startP
+follower = Null
+
+while *cursor.next != Null
+    follower = cursor
+    cursor = *cursor.next
+    free(follower)
+free(cursor)
+
+
+
+readfile:
+given record** startP, char* filename
+
+FILE* pointer
+char check, addChar
+int accountno, placeInString
+
+
+pointer = fopen(filename, "r")
+
+if pointer == null
+   return -1
+
+else:
+    check = fgetc(pointer)
+
+    while check != EOF
+        ungetc(check, pointer)
+        fscanf(pointer, &accountno)
+        fgets(trash, 80, pointer)
+        fgets(name, 25, pointer)
+
+        read characters and add them to address until % is found
+        addChar = fgetc(pointer)
+        while (addChar != '%' && placeInString < 43)
+            address[placeInString] = addChar
+            address[placeInString + 1] = "\0"
+            placeInString++
+            addChar = fgetc(pointer)
+        placeInString = 0
+        check = fgetc(pointer)
+        
+        addRecord(accountno,name,address,startP)
+
+writeFile
+given record* startP, char[] filename
+
+FILE* pointer
+
+pointer = fopen(filename, "w")
+
+if pointer == null
+    returnVal = -1
+
+else
+    while startP.next != NULL
+        fprintf(pointer, "%d\n", startP.accountno)
+        fprintf(pointer, "%s\n", startP.name)
+        fprintf(pointer, "%s\n", startP.address)
+        fprintf(pointer, "%c\n", '%')
+    
+        startP = startP.next
+
+    

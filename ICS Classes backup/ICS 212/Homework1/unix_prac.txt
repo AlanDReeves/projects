@@ -1,0 +1,27 @@
+Script started on Tue 03 Sep 2024 11:15:31 AM HST
+]0;alandr@uhx02:~/homework1[?1034huhx02:/home/a/alandr/homework1% pwd
+/home/a/alandr/homework1
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% mkdir unix_prac
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% cp homework1 unix_prac
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% cd unix_prac/
+]0;alandr@uhx02:~/homework1/unix_pracuhx02:/home/a/alandr/homework1/unix_prac% cp [K[K[Kmv homework1 hw1
+]0;alandr@uhx02:~/homework1/unix_pracuhx02:/home/a/alandr/homework1/unix_prac% ls
+[0m[01;32mhw1[0m
+]0;alandr@uhx02:~/homework1/unix_pracuhx02:/home/a/alandr/homework1/unix_prac% ./hw1
+Hello
+World
+!!!
+While loop!
+While loop!
+While loop!
+While loop!
+Do-while loop!
+Do-while loop!
+Do-while loop!
+]0;alandr@uhx02:~/homework1/unix_pracuhx02:/home/a/alandr/homework1/unix_prac% rm hw1
+]0;alandr@uhx02:~/homework1/unix_pracuhx02:/home/a/alandr/homework1/unix_prac% cd ..
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% rm -R unix_prac
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% exit
+exit
+
+Script done on Tue 03 Sep 2024 11:16:30 AM HST

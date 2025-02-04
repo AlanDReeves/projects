@@ -1,0 +1,26 @@
+Goals for test plan:
+Focus on database functions, do not need to check different length inputs for menu thoroughly
+
+Tests:
+print records while empty list
+add one record, check that it prints, remove the record, print again to show empty
+
+
+remove checks:
+remove first - done
+remove last - done
+remove one in middle - done
+remove only entry - done
+remove a record that doesn't exist - done
+
+add checks:
+add to empty list - done
+add before - done
+add after - done
+add between 2 records - done
+
+Test debug mode
+call program with executable + asdf
+call program with executable + debug + asdf
+call program with executable + debug
+in debug mode call a function

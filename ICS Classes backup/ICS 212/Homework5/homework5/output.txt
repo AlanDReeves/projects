@@ -1,0 +1,93 @@
+Script started on Sat 12 Oct 2024 01:38:05 PM HST
+]0;alandr@uhx02:~/homework5[?1034huhx02:/home/a/alandr/homework5% ,.[K[K./homee[Kwork5 
+
+
+
+Starting driver check of readfile and writefile
+
+
+normalCheck()
+writing pokemon.txt  with the following data: 
+lvl 36 pidgeot, lvl 30 butterfree, lvl 32 magmar 
+reading pokemon.txt
+36
+pidgeot
+
+30
+butterfree
+
+32
+magmar
+
+end of contents
+
+overwriteCheck()
+overwriting pokemon.txt with 4 identical lvl 3 weedle
+reading contents of pokemon.txt
+3
+weedle
+
+3
+weedle
+
+3
+weedle
+
+3
+weedle
+
+end of contents
+
+fileTooLongCheck
+reading from pokemon.txt to array of size 2
+3
+weedle
+
+3
+weedle
+
+end of contents
+new array size value is: 2
+
+fileTooSmallCheck
+pokearray pre-loaded with 5 level 6 caterpie.
+current contents of array:
+6
+caterpie
+6
+caterpie
+6
+caterpie
+6
+caterpie
+6
+caterpie
+calling readfile with pokearray and pre-existing pokemon.txt
+pokemon.txt contains 4 level 3 weedle.
+
+Pokearray size is now: 4
+new contents of array:
+3
+weedle
+
+3
+weedle
+
+3
+weedle
+
+3
+weedle
+
+Should be 4 level 3 weedle
+
+emptyFileCheck()
+readfile called on 0000.txt.
+readfile returned: -1
+should be -1
+New array size is: 10
+10 indicates that it is unchanged (intended)
+]0;alandr@uhx02:~/homework5uhx02:/home/a/alandr/homework5% exit
+exit
+
+Script done on Sat 12 Oct 2024 01:38:15 PM HST

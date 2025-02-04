@@ -1,0 +1,8 @@
+Script started on Tue 03 Sep 2024 11:06:39 AM HST
+]0;alandr@uhx02:~/homework1[?1034huhx02:/home/a/alandr/homework1% gcc -ansi -pedantic [K-errors -Wall -c homework1.c
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% gcc o- [K[K[K-o homework1 homework1.o
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% javac helloworld.java
+]0;alandr@uhx02:~/homework1uhx02:/home/a/alandr/homework1% exit
+exit
+
+Script done on Tue 03 Sep 2024 11:08:11 AM HST

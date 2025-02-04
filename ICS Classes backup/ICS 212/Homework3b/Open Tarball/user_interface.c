@@ -1,0 +1,242 @@
+/*****************************************************************
+//
+//  NAME:        Alan Reeves
+//
+//  HOMEWORK:    3b
+//
+//  CLASS:       ICS 212
+//
+//  INSTRUCTOR:  Ravi Narayan
+//
+//  DATE:        September 25, 2024
+//
+//  FILE:        user_interface.c
+//
+//  DESCRIPTION:
+//   This file contains the user interface methods for the
+//   bank software.
+//
+****************************************************************/
+
+#include"record.h"
+#include"database.h"
+#include<string.h>
+#include<stdio.h>
+
+void displayMenu();
+char* getAddress(char[], int);
+int getValidAcctNum(char*);
+
+int debugMode = 0;
+
+
+
+/*****************************************************************
+//
+//  Function name: main
+//
+//  DESCRIPTION:   This is the main function. It greets the user
+//                 calls displayMenu and executes menu options.
+//
+//  Parameters:    argc (int) : The number of elements in argv
+//                 argv (char*[]) : An array of arguments passed
+//                                  to the program.
+//
+//  Return values: 0 : completed without issue.
+//
+****************************************************************/
+
+int main(int argc, char* argv[])
+{
+    char userInput[30], trashInput[80], newName[80], newAddress[80];
+    int inputLength = 2, findAcctNum, deleteAcctNum, newAcctNum;
+    struct record * start = NULL;
+
+    if (argc > 2)
+    {
+        printf("Invalid arguments.\n");
+    }
+    else if (argc == 2 && strcmp("debug", argv[1]) != 0)
+    {
+        printf("Invalid arguments.\n");
+    }
+    else
+    {
+        if (argc == 2)
+        debugMode = 1;
+        
+        /*Then run the whole program*/ 
+
+        printf("%s", "Welcome to the database. This program stores ");
+        printf("and retrieves customer data.\n");
+
+        /*main loop of the program*/
+        do
+        {
+            displayMenu();
+            fgets(userInput, 30, stdin);
+            inputLength = strlen(userInput);
+
+            if (strncmp(userInput, "quit", inputLength -1) == 0)
+            {
+                /*Do nothing*/
+            }
+
+            else if (strncmp(userInput, "add", inputLength - 1) == 0)
+            {
+                printf("Creating a new account record.\n");
+                newAcctNum = getValidAcctNum(trashInput);
+
+                printf("Enter the account holder's name.\n");
+                fgets(newName, 80, stdin);
+                newName[strlen(newName) - 1] = '\0';
+                /*This removes the new line char from newName*/
+
+                printf("Enter the account holder's address.\n");
+                getAddress(newAddress, 80);
+
+                addRecord(&start, newAcctNum, newName, newAddress);
+            
+            }
+
+            else  if (strncmp(userInput, "printall", inputLength - 1) == 0)
+            {
+                printAllRecords(start);
+            }    
+
+            else if (strncmp(userInput, "find", inputLength - 1) == 0)
+            {
+                findAcctNum =  getValidAcctNum(trashInput);
+                findRecord(start, findAcctNum);
+            }
+
+            else if (strncmp(userInput, "delete", inputLength - 1) ==0)
+            {
+                deleteAcctNum = getValidAcctNum(trashInput);
+                deleteRecord(&start, deleteAcctNum); 
+            }
+       
+            else 
+            {
+                printf("Invalid input.\n");
+            }
+        }
+        while (strncmp(userInput, "quit", inputLength - 1) != 0);
+
+        
+    }   
+    return 0; 
+}
+
+/*****************************************************************
+//
+//  Function name: displayMenu
+//
+//  DESCRIPTION:   This function prints a menu for the user.
+//
+//  Parameters:    none
+//
+//  Return values: none
+//
+****************************************************************/
+
+void displayMenu()
+{
+    if (debugMode == 1)
+    {
+        printf("called displayMenu()\n");
+    }
+    printf("Please select one of the following options or press");
+    printf(" enter to quit.\n\n");
+    printf("add:      add a new account record\n");
+    printf("printall: show all existing records\n");
+    printf("find:     find an account by its account number\n");
+    printf("delete:   delete an existing record by its account");
+    printf(" number\n");
+    printf("quit:     exit this program\n\n");
+}
+
+/****************************************************************
+//  Function name: getAddress
+//
+//  Description:   Gets the address input by the user and works
+//                 over multiple lines.
+//
+//  Parameters:    address (char*) : an array to hold the address.
+//                 arrySize (int) : the size of the array.
+//
+//  Return values: address (char*) : a char array containing
+//                 the user's multi-line address.
+//
+***************************************************************/
+
+char* getAddress(char* address, int arrySize)
+{
+    int placeInString;
+    char newChar, trashInput[80];
+
+    if (debugMode == 1)
+    {
+        printf("called getAddress(char address, int %d)\n", arrySize);
+        printf("address is an uninitialized string\n");
+    }
+
+    printf("Type as many lines as you like, and ");
+    printf("input a percent symbol when done.\n");
+
+    placeInString = 0;
+
+    do
+    {
+        newChar = fgetc(stdin);
+        if (newChar != '%' && placeInString < arrySize - 2)
+        {
+            address[placeInString] = newChar;
+            address[placeInString + 1] = '\0';
+            placeInString = placeInString + 1;
+        }
+
+    }
+    while (newChar != '%');
+
+    fgets(trashInput, 80, stdin);
+    
+    return address;
+}
+
+/***************************************************************
+//  Function name: getValidAcctNum
+//
+//  Description:   asks for positive integer acct num until it
+//                 receives one.
+//
+//  Parameters:    trashInput (char*) : a char array to hold 
+//                 useless input.
+//
+//  Return values: acctNum (int) : the valid acct num once found.
+//
+****************************************************************/
+
+int getValidAcctNum(char* trashInput)
+{
+    int acctNum = -1;
+
+    if (debugMode == 1)
+    {
+        printf("called getValidAcctNum(char[] trashInput)\n");
+        printf("trashInput is an uninitialized string\n");
+    }
+
+    printf("Please enter an account number\n");
+    scanf("%d", &acctNum);
+    fgets(trashInput, 80, stdin);
+
+    while (acctNum < 1)
+    {
+        printf("The account number must be an integer greater than 0\n");
+        printf("Please enter an account number.\n");
+        scanf("%d", &acctNum);
+        fgets(trashInput, 80, stdin);
+    }
+    return acctNum;
+}
