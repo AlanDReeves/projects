@@ -8,3 +8,5 @@ from RamanProcessor import RamanProcessor
 #option to show graph
 #show graph with peaks marked?
 
+
+#consider packaging as an exe file
