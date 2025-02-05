@@ -8,6 +8,7 @@ class RamanProcessor:
 
     x_vals = []
     y_vals = []
+    peaksList = [] # list of just the peaks as x/y pairs
 
 
     def readFile(self, filename: str):
@@ -34,10 +35,11 @@ class RamanProcessor:
         plt.ylabel("intensity")
         plt.title("Raman Data")
 
-        plt.show(block=False)
+        plt.show(block=True)
+        #Does not show graph if I put block to false?
 
     #identify peaks
-    def findPeak(x_vals: list, y_vals: list):
+    def findPeak(self, x_vals: list, y_vals: list):
         averageHeight = statistics.mean(y_vals)
         peaksList = []
         newPeak = False
@@ -54,17 +56,18 @@ class RamanProcessor:
 
         return peaksList
 
-    def comparePeaks(peak1Top, peak2Top):
+    def comparePeaks(self, peak1Top: float, peak2Top: float):
         return peak1Top / peak2Top
     
 
-    def normaliseYAxis(self):
+    def normalizeYAxis(self):
         baseLineYAxis = scipy.signal.detrend(self.y_vals)
         self.y_vals = baseLineYAxis
     
-    def __init__(self, filename):
+    def __init__(self, filename: str):
         self.x_vals = []
         self.y_vals = []
         self.readFile(filename)
+        self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
 

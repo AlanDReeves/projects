@@ -14,7 +14,7 @@ class newMainWindow(QMainWindow):
         def the_button_was_clicked(self):
             print("Clicked the button")
         
-        button.clicked.connect(self.close())
+        button.clicked.connect(self.close)
 
         self.setCentralWidget(button)
         self.setMinimumSize(800, 600)
