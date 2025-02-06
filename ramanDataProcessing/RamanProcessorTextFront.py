@@ -1,4 +1,5 @@
 from RamanProcessor import RamanProcessor
+from tkinter import filedialog as fd
 
 #funcs list:
 #print menu
@@ -15,7 +16,15 @@ def printMenu():
 
 #select file w/small GUI
 def selectFile():
-    pass
+    filetypes = (
+        ('txt files', '*.txt'),
+        ('All files', '*.*')
+    )
+    filename = fd.askopenfilename(
+        title='Open a file',
+        initialdir='/',
+        filetypes= filetypes)
+    return filename
 
 def makePlot(backend: RamanProcessor):
     backend.makePlot()
@@ -40,8 +49,50 @@ def normalizeYAxis(backend: RamanProcessor):
 
 
 #main()
-fileAddress = selectFile()
+#call menu
+userInput = '-1'
+backend = None
+fileSelected = False
 
-fileAddress = "ramanDataProcessing\EA Reactive GNP_rawdata_textfile.txt"
+while (userInput != 'q'):
+    userInput = printMenu()
+#take input, give to a switch statement
+    match userInput:
+        case "1":
+            filename = selectFile()
+            backend = RamanProcessor(filename)
+            fileSelected = True
 
-backend = RamanProcessor(fileAddress)
+        case "2":
+            if fileSelected == True:    
+                makePlot(backend)
+            else:
+                print("No file selected yet")
+
+        case "3":
+            if fileSelected == True:
+                listPeaks(backend)
+            else:
+                print("No file selected yet")
+            
+        case "4":
+            if fileSelected == True:
+                comparePeaks(backend)
+            else:
+                print("No file selected yet")
+            
+        case "5":
+            if fileSelected == True:
+                normalizeYAxis(backend)
+            else:
+                print("No file selected yet")
+            
+        case _:
+            if userInput == 'q':
+                break
+            else:
+                print("Input not understood. Please enter something else.")
+                print()
+
+#call appropriate response given input
+#loop the above
