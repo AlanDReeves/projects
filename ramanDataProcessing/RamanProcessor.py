@@ -29,13 +29,13 @@ class RamanProcessor:
 
     def makePlot(self):
         #change style in future
-        plt.plot(self.x_vals, self.y_vals, marker='o', linestyle='-')
+        plt.plot(self.x_vals, self.y_vals, marker=',', linestyle='-')
 
         plt.xlabel("cm^-1")
         plt.ylabel("intensity")
         plt.title("Raman Data")
 
-        plt.show(block=True)
+        plt.show(block=False)
         #Does not show graph if I put block to false?
 
     #identify peaks
@@ -46,6 +46,8 @@ class RamanProcessor:
 
         #if y goes above double average, start tracking
         #when y decreases, record previous point as peak
+
+        #may decrease time by sorting Y values
 
         for i in range(1, len(y_vals)):
             if y_vals[i] > (2 * averageHeight) and y_vals[i-1] < y_vals[i]:
@@ -71,3 +73,4 @@ class RamanProcessor:
         self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
 
+#TODO: (maybe) export peak data in some way, mark peaks on graph somehow, allow smaller peaks on findPeaks
