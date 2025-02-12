@@ -1,6 +1,4 @@
 import matplotlib.pyplot as plt
-import statistics
-import numpy as np
 import scipy
 import scipy.signal
 
@@ -9,6 +7,7 @@ class RamanProcessor:
     x_vals = []
     y_vals = []
     peaksList = [] # list of just the peaks as x/y pairs
+    screenSize = int(50)
 
 
     def readFile(self, filename: str):
@@ -35,42 +34,61 @@ class RamanProcessor:
         plt.ylabel("intensity")
         plt.title("Raman Data")
 
+        if (len(self.peaksList) > 0):
+            for point in self.peaksList:
+                plt.axvline(x=point[0], color='r', linestyle='--', linewidth=2)
+
         plt.show(block=False)
-        #Does not show graph if I put block to false?
+
+    #detects if the Y value at the index given is greather than the surrounding 2 * screenSize many Y values, if they exist
+    def isBigPeak(self, index: int):
+        #take y value
+        checkVal = self.y_vals[index]
+
+        for i in range(-(self.screenSize), self.screenSize):
+            if ((index + i >= 0 and index + i < len(self.y_vals))):
+                if (self.y_vals[index + i] > checkVal):
+                    return False
+        return True
 
     #identify peaks
     def findPeak(self, x_vals: list, y_vals: list):
-        averageHeight = statistics.mean(y_vals)
         peaksList = []
         newPeak = False
 
-        #if y goes above double average, start tracking
+        #if y increases start tracking
         #when y decreases, record previous point as peak
 
         #may decrease time by sorting Y values
 
         for i in range(1, len(y_vals)):
-            if y_vals[i] > (2 * averageHeight) and y_vals[i-1] < y_vals[i]:
+            if  y_vals[i-1] < y_vals[i] and self.isBigPeak(i):
                 newPeak = True
             if y_vals[i] < y_vals[i-1] and newPeak is True:
                 peaksList.append([x_vals[i-1], y_vals[i-1]])
                 newPeak = False
+
+        peaksList.sort(key=lambda point: point[1], reverse=True)
 
         return peaksList
 
     def comparePeaks(self, peak1Top: float, peak2Top: float):
         return peak1Top / peak2Top
     
-
     def normalizeYAxis(self):
         baseLineYAxis = scipy.signal.detrend(self.y_vals)
         self.y_vals = baseLineYAxis
+
+    def setScreenSize(self, newSize: int):
+        self.screenSize = newSize
+        self.peaksList = self.findPeak(x_vals=self.x_vals, y_vals=self.y_vals)
     
     def __init__(self, filename: str):
         self.x_vals = []
         self.y_vals = []
+        self.screenSize = int(50)
         self.readFile(filename)
         self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
 
-#TODO: (maybe) export peak data in some way, mark peaks on graph somehow, allow smaller peaks on findPeaks
+#TODO: (maybe) export peak data in some way

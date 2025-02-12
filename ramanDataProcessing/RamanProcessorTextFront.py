@@ -11,6 +11,7 @@ def printMenu():
     print("3 - List peaks")
     print("4 - Compare peaks")
     print("5 - Normalize data on Y axis")
+    print("6 - Change the screen size for detecting peaks")
     print("q - quit")
     return input()
 
@@ -41,15 +42,15 @@ def comparePeaks(backend: RamanProcessor):
 def listPeaks(backend: RamanProcessor):
     print("Peak number - [X, Y]")
     for i in range(0, len(backend.peaksList)):
-        print("Peak {index} - ".format(index = i), end="")
-        print(backend.peaksList[i])
+        if (i < len(backend.peaksList)):
+            print("Peak {index} - ".format(index = i), end="")
+            print(backend.peaksList[i])
 
 def normalizeYAxis(backend: RamanProcessor):
     backend.normalizeYAxis()
 
 
-#main()
-#call menu
+# main function
 userInput = '-1'
 backend = None
 fileSelected = False
@@ -60,8 +61,12 @@ while (userInput != 'q'):
     match userInput:
         case "1":
             filename = selectFile()
-            backend = RamanProcessor(filename)
-            fileSelected = True
+            try:
+                backend = RamanProcessor(filename)
+                fileSelected = True
+            except Exception as e:
+                print(e)
+                print("Unable to read file. Is this the right file type?")
 
         case "2":
             if fileSelected == True:    
@@ -86,6 +91,18 @@ while (userInput != 'q'):
                 normalizeYAxis(backend)
             else:
                 print("No file selected yet")
+
+        case "6":
+            if (fileSelected == True):
+                print("A larger screen size will produce fewer peaks, while a smaller size will produce more peaks.")
+                print("The default screen size is 50")
+                try:
+                    newScreen = int(input("Please enter the new screen size: "))
+                    backend.setScreenSize(newScreen)
+                except Exception as e:
+                    print(e)
+            else:
+                print("No file selected yet")
             
         case _:
             if userInput == 'q':
@@ -93,6 +110,3 @@ while (userInput != 'q'):
             else:
                 print("Input not understood. Please enter something else.")
                 print()
-
-#call appropriate response given input
-#loop the above
