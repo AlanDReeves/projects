@@ -25,6 +25,7 @@ class RamanProcessor:
 
         #separates x and y values into discrete lists
         self.x_vals, self.y_vals = zip(*newCoords)
+            
 
     def makePlot(self):
         #change style in future
@@ -35,8 +36,19 @@ class RamanProcessor:
         plt.title("Raman Data")
 
         if (len(self.peaksList) > 0):
-            for point in self.peaksList:
-                plt.axvline(x=point[0], color='r', linestyle='--', linewidth=2)
+            # split peaks into distinct x and y coordinate arrays
+            # allows scatter plot to be made for highlighting peaks
+            peaksX = []
+            peaksY = []
+            for element in self.peaksList:
+                peaksX.append(element[0])
+                peaksY.append(element[1])
+
+            plt.scatter(peaksX, peaksY, color="red", label="peaks", zorder=3)
+
+            for i, peak_index in enumerate(self.peaksList):
+                plt.text(peaksX[i], peaksY[i] + 0.05, str(peak_index), 
+                fontsize=8, ha='center', color='blue', fontweight='bold')
 
         plt.show(block=False)
 
@@ -94,4 +106,4 @@ class RamanProcessor:
         self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
 
-#TODO: (maybe) export peak data in some way, mark only tops of peaks (color or label)
+#TODO: (maybe) export peak data in some way
