@@ -82,6 +82,9 @@ class RamanProcessor:
     def setScreenSize(self, newSize: int):
         self.screenSize = newSize
         self.peaksList = self.findPeak(x_vals=self.x_vals, y_vals=self.y_vals)
+
+    def splitXandY():
+        pass
     
     def __init__(self, filename: str):
         self.x_vals = []
@@ -91,4 +94,4 @@ class RamanProcessor:
         self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
 
-#TODO: (maybe) export peak data in some way
+#TODO: (maybe) export peak data in some way, mark only tops of peaks (color or label)
