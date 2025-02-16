@@ -42,6 +42,9 @@ class Ui_Dialog(object):
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(10, 200, 61, 16))
+        self.pushButton_3 = QPushButton(Dialog)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(200, 360, 75, 24))
 
         self.retranslateUi(Dialog)
 
@@ -54,5 +57,6 @@ class Ui_Dialog(object):
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"Normalize", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"Screen Size", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Peaks List", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
     # retranslateUi
 

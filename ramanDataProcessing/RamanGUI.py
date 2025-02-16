@@ -64,8 +64,6 @@ class newMainWindow(QMainWindow):
         sliderLabel = QLabel("Slider Setting: " + str(self.screenSlider.value()))
         layout.addWidget(sliderLabel)
 
-
-        
         #button functions
 
         def openFileBrowser():
@@ -125,4 +123,4 @@ window = newMainWindow()
 window.show()
 app.exec()
 
-# TODO: Add something to display the plot inside GUI using pyqtgraph
+# TODO: Add something to display the plot inside GUI using pyqtgraph, Arrange GUI elements in a way that makes more sense.
