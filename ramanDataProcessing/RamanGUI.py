@@ -32,9 +32,25 @@ class newMainWindow(QMainWindow):
         makePyPlotButton.setCheckable(True)
         layout.addWidget(makePyPlotButton)
 
+        normalizerButton = QPushButton("Normalize Data")
+        normalizerButton.setCheckable(True)
+        layout.addWidget(normalizerButton)
+
+        self.screenSlider = QSlider(Qt.Horizontal)
+        self.screenSlider.setMinimum(20)
+        self.screenSlider.setMaximum(250)
+        layout.addWidget(self.screenSlider)
+    
+        sliderLabel = QLabel("Peak Detection Sensitivity Setting: " + str(self.screenSlider.value()))
+        layout.addWidget(sliderLabel)
+
+        sliderExplanation = QLabel("Smaller peak sensitivity is MORE sensitive. Default is 50")
+        layout.addWidget(sliderExplanation)
+
         peakList = QListWidget()
         peakList.addItem("Peaks List")
         peakList.addItem("X val, Y val")
+        peakList.addItem("Select a file to see values")
         layout.addWidget(peakList)
 
         self.peakSelectorA = QSpinBox()
@@ -52,19 +68,20 @@ class newMainWindow(QMainWindow):
         self.ratioLabel = QLabel("Ratio of peak A to peak B: ")
         layout.addWidget(self.ratioLabel)
 
-        normalizerButton = QPushButton("Normalize Data")
-        normalizerButton.setCheckable(True)
-        layout.addWidget(normalizerButton)
-
-        self.screenSlider = QSlider(Qt.Horizontal)
-        self.screenSlider.setMinimum(20)
-        self.screenSlider.setMaximum(250)
-        layout.addWidget(self.screenSlider)
-
-        sliderLabel = QLabel("Slider Setting: " + str(self.screenSlider.value()))
-        layout.addWidget(sliderLabel)
-
         #button functions
+
+        #updates list to show recent changes
+        def setNewPeaks(self):
+            peakList.clear()
+            peakList.addItem("Peaks List")
+            peakList.addItem("X val, Y val")
+            i = int(0)
+            for element in self.backend.peaksList:
+                peakList.addItem("Peak " + str(i) + ": " + str(element[0]) + ', ' + str(element[1]))
+                i += 1
+            self.peakSelectorA.setMaximum(len(self.backend.peaksList) - 1)
+            self.peakSelectorB.setMaximum(len(self.backend.peaksList) - 1)
+
 
         def openFileBrowser():
             #selects a file, creates a RamanProcessor object, adds peaks found to list, and limits peak selector boxes
@@ -73,12 +90,7 @@ class newMainWindow(QMainWindow):
             self.ramanFile = filePath
             self.fileSelected = True
             self.backend = RamanProcessor(self.ramanFile)
-            i = int(0)
-            for element in self.backend.peaksList:
-                peakList.addItem("Peak " + str(i) + ": " + str(element[0]) + ', ' + str(element[1]))
-                i += 1
-            self.peakSelectorA.setMaximum(len(self.backend.peaksList) - 1)
-            self.peakSelectorB.setMaximum(len(self.backend.peaksList) - 1)
+            setNewPeaks(self)
 
         def makePyPlot():
             if (self.fileSelected == True):
@@ -96,11 +108,14 @@ class newMainWindow(QMainWindow):
         def normalizeData():
             if (self.fileSelected == True):
                 self.backend.normalizeYAxis()
+                setNewPeaks(self)
 
         def changeScreenSize():
             if (self.fileSelected == True):
                 self.backend.setScreenSize(self.screenSlider.value())
-                sliderLabel.setText("Slider Setting: " + str(self.screenSlider.value()))
+                sliderLabel.setText("Peak Detection Sensitivity Setting: " + str(self.screenSlider.value()))
+                self.backend.findPeak(x_vals=self.backend.x_vals, y_vals=self.backend.y_vals)
+                setNewPeaks(self)
         
         # connecting buttons to functions
         quitButton.clicked.connect(self.close)
@@ -123,4 +138,4 @@ window = newMainWindow()
 window.show()
 app.exec()
 
-# TODO: Add something to display the plot inside GUI using pyqtgraph, Arrange GUI elements in a way that makes more sense.
+# TODO: Add something to display the plot inside GUI using pyqtgraph

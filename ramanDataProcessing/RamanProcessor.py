@@ -90,6 +90,7 @@ class RamanProcessor:
     def normalizeYAxis(self):
         baseLineYAxis = scipy.signal.detrend(self.y_vals)
         self.y_vals = baseLineYAxis
+        self.peaksList = self.findPeak(self.x_vals, self.y_vals)
 
     def setScreenSize(self, newSize: int):
         self.screenSize = newSize
