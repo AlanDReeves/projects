@@ -14,7 +14,26 @@ class productionCalculator:
     currents: list
     hydrogenPerAmp = 1.04e-5 # remains constant
 
+    def firstDerivative(self, index1: int, index2: int) -> float:
+        """Helper function for detectInflectionPoint. Approximates first derivative"""
+        derivative = (self.currents[index2] - self.currents[index1]) / (self.voltages[index2] - self.voltages[index1])
+        # rise / run = slope
+        return derivative
+
+    def secondDerivative(self, index1: int, index2: int) -> float:
+        """Helper function for detectInflectionPoint. Approximates second derivative"""
+        # f'(index2) - f'(index1) / run
+        secDerivative =  self.firstDerivative(index1 - 1, index1) 
+        pass
+
+
+    def detectInflectionPoint () -> int:
+        """Detects the leftmost inflection point on a graph. Returns the earliest index where the slope is near zero"""
+
+        pass
+
     def readFile(self, filename: str):
+            """Reads a given text file and saves voltages and currents as lists"""
             coordsList = []
             with open(filename, "r") as file:
                 coordsList = file.readlines()
