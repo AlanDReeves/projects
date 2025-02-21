@@ -21,10 +21,13 @@ class productionCalculator:
         return derivative
 
     def secondDerivative(self, index1: int, index2: int) -> float:
-        """Helper function for detectInflectionPoint. Approximates second derivative"""
+        """Helper function for detectInflectionPoint. Approximates second derivative
+        Also checks index BEFORE index1"""
         # f'(index2) - f'(index1) / run
-        secDerivative =  self.firstDerivative(index1 - 1, index1) 
-        pass
+        changeInDeriv =  self.firstDerivative(index1 - 1, index2) - self.firstDerivative(index1, index2)
+        run = self.voltages[index2] - self.voltages[index1]
+
+        return changeInDeriv / run
 
 
     def detectInflectionPoint () -> int:
@@ -43,8 +46,8 @@ class productionCalculator:
             newCoords = []
             for i in range(2, len(coordsList)):
                 newCoords.append(coordsList[i].split())
-                newCoords[i][0] = float(newCoords[i][0])
-                newCoords[i][1] = float(newCoords[i][1])
+                newCoords[i - 2][0] = float(newCoords[i - 2][0])
+                newCoords[i - 2][1] = float(newCoords[i - 2][1])
 
             #separates x and y values into discrete lists
             self.voltages, self.currents = zip(*newCoords)
