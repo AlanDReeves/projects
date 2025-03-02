@@ -12,6 +12,7 @@ class productionCalculator:
 
     voltages: list
     currents: list
+    floatCoords: list
     hydrogenPerAmp = 1.04e-5 # remains constant
 
     def firstDerivative(self, index1: int, index2: int) -> float:
@@ -30,24 +31,30 @@ class productionCalculator:
         return changeInDeriv / run
 
 
-    def detectInflectionPoint () -> int:
+    def detectInflectionPoint (self) -> int:
         """Detects the leftmost inflection point on a graph. Returns the earliest index where the slope is near zero"""
-
+        sortedCoords = sorted(self.floatCoords)
+        #scan data from left to right until derivative <= 0
+        for i in range(1, len(sortedCoords)):
+            if (self.firstDerivative(i-1, i) <= 0):
+                return i
         pass
 
     def readFile(self, filename: str):
             """Reads a given text file and saves voltages and currents as lists"""
-            coordsList = []
+            self.coordsList = []
             with open(filename, "r") as file:
-                coordsList = file.readlines()
+                self.coordsList = file.readlines()
                 file.close()
 
             #process coords into 2D array [cm^-1][intensity]
             newCoords = []
-            for i in range(2, len(coordsList)):
-                newCoords.append(coordsList[i].split())
+            for i in range(2, len(self.coordsList)):
+                newCoords.append(self.coordsList[i].split())
                 newCoords[i - 2][0] = float(newCoords[i - 2][0])
                 newCoords[i - 2][1] = float(newCoords[i - 2][1])
+            self.floatCoords = newCoords
+            #overwrites coordsList with new values
 
             #separates x and y values into discrete lists
             self.voltages, self.currents = zip(*newCoords)
