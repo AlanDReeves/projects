@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # return expected hydrogen production per second at that current/voltage
 # create graph representing hydrogen per amp/volt
 
-# TODO: find inflection point in graph and disregard all points on the wrong side
+# TODO: disregard all points on the wrong side of inflection point
 
 class productionCalculator:
 
@@ -57,6 +57,10 @@ class productionCalculator:
                 if self.currents[i] < -0.01:
                     return i
                     # when voltage decreasing and current below -0.01 return index
+
+    def makeShortList(self):
+        # find endpoint where current starts increasing again, or list ends
+        # 
 
     def readFile(self, filename: str):
             """Reads a given text file and saves voltages and currents as lists"""
