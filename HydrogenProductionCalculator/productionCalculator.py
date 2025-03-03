@@ -31,14 +31,32 @@ class productionCalculator:
         return changeInDeriv / run
 
 
-    def detectInflectionPoint (self) -> int:
+    def detectInflectionPoint (self):
+        # currently considering alternatives to this. Currently returns too many points
         """Detects the leftmost inflection point on a graph. Returns the earliest index where the slope is near zero"""
-        sortedCoords = sorted(self.floatCoords)
-        #scan data from left to right until derivative <= 0
-        for i in range(1, len(sortedCoords)):
-            if (self.firstDerivative(i-1, i) <= 0):
-                return i
-        pass
+        # remember that x values can be given in increasing or decreasing order with no indiciation
+        # identify where derivative nears 0
+        results = []
+        for i in range(0, len(self.currents) - 1): # -1 to prevent out of bounds
+            deriv = abs(self.firstDerivative(i, i + 1))
+            if deriv <= 0.01:
+                # determine if 2nd deriv is positive or negative
+                if (self.secondDerivative(i, i + 1) > 0):
+                    state = "positive"
+                else:
+                    state="negative"
+                # store inflection point as (coordinates, pos/neg)
+                results.append(state)
+        return results
+    
+    def inflectionPoint2(self):
+        """returns the first voltage where current is less than 0.01 A and voltage is decreasing in the sweep"""
+        for i in range(0, len(self.voltages) - 1):
+            # check that voltage is decreasing
+            if self.voltages[i] > self.voltages[i + 1]:
+                if self.currents[i] < -0.01:
+                    return i
+                    # when voltage decreasing and current below -0.01 return index
 
     def readFile(self, filename: str):
             """Reads a given text file and saves voltages and currents as lists"""
